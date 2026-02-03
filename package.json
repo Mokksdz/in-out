@@ -1,0 +1,17 @@
+{
+  "name": "inout-landing-page",
+  "version": "1.0.0",
+  "description": "IN & OUT by Elfartas - Landing page for construction and renovation services",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "construction",
+    "renovation",
+    "landing-page"
+  ],
+  "author": "IN & OUT by Elfartas",
+  "license": "MIT"
+}
