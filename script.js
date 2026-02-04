@@ -136,7 +136,7 @@ if (contactForm) {
         submitBtn.textContent = 'Envoi en cours...';
 
         // Create mailto link
-        const mailtoLink = `mailto:contact@inout.build?subject=Nouveau message de ${encodeURIComponent(data.name)}&body=Nom: ${encodeURIComponent(data.name)}%0D%0AEmail: ${encodeURIComponent(data.email)}%0D%0ATéléphone: ${encodeURIComponent(data.phone || 'Non fourni')}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(data.message)}`;
+        const mailtoLink = `mailto:fahd@inout.build?subject=Nouveau message de ${encodeURIComponent(data.name)}&body=Nom: ${encodeURIComponent(data.name)}%0D%0AEmail: ${encodeURIComponent(data.email)}%0D%0ATéléphone: ${encodeURIComponent(data.phone || 'Non fourni')}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(data.message)}`;
 
         // Simulate sending delay
         setTimeout(() => {
