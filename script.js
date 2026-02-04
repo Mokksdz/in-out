@@ -268,3 +268,56 @@ document.addEventListener('keydown', (e) => {
         mobileMenuToggle.classList.remove('active');
     }
 });
+
+// ==================== GOOGLE ANALYTICS EVENTS ====================
+// Track form submission
+if (contactForm) {
+    const originalSubmitHandler = contactForm.onsubmit;
+    contactForm.addEventListener('submit', (e) => {
+        // Send GA event if gtag is available
+        if (typeof gtag === 'function') {
+            gtag('event', 'form_submission', {
+                'event_category': 'Contact',
+                'event_label': 'Contact Form',
+                'value': 1
+            });
+        }
+    });
+}
+
+// Track CTA button clicks
+document.querySelectorAll('.btn-primary, .cta-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        if (typeof gtag === 'function') {
+            const text = e.target.textContent.trim();
+            gtag('event', 'cta_click', {
+                'event_category': 'Engagement',
+                'event_label': text
+            });
+        }
+    });
+});
+
+// Track phone clicks
+document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'phone_click', {
+                'event_category': 'Contact',
+                'event_label': link.textContent.trim()
+            });
+        }
+    });
+});
+
+// Track email clicks
+document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'email_click', {
+                'event_category': 'Contact',
+                'event_label': link.href.replace('mailto:', '')
+            });
+        }
+    });
+});
