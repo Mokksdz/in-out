@@ -3,27 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IN & OUT - Entreprise de construction, rénovation et aménagement. Accompagnement complet de la conception à la livraison.">
-    <title>IN & OUT by Elfartas - Construction & Rénovation</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="IN & OUT by Elfartas - Entreprise de construction, rénovation et aménagement. Accompagnement complet de particuliers, copropriétés et entreprises de la conception à la livraison.">
+    <meta name="keywords" content="construction, rénovation, aménagement, travaux, bâtiment, plomberie, électricité, charpente, maçonnerie, France">
+    <meta name="author" content="IN & OUT by Elfartas">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="IN & OUT by Elfartas - Construction & Rénovation">
+    <meta property="og:description" content="Entreprise de construction, rénovation et aménagement. Tous Corps d'État. Qualité garantie et suivi complet.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inout.build">
+    <meta property="og:image" content="https://inout.build/logo_inout.svg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IN & OUT by Elfartas - Construction & Rénovation">
+    <meta name="twitter:description" content="Entreprise de construction, rénovation et aménagement. Tous Corps d'État.">
+    <meta name="twitter:image" content="https://inout.build/logo_inout.svg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo_inout.svg">
+    <link rel="apple-touch-icon" href="logo_inout.svg">
+
+    <title>IN & OUT by Elfartas - Construction & Rénovation | Tous Corps d'État</title>
+
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <img src="logo_inout.svg" alt="IN & OUT" class="loader-logo">
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
     <!-- Header -->
-    <header>
-        <nav class="navbar">
+    <header role="banner">
+        <nav class="navbar" role="navigation" aria-label="Navigation principale">
             <div class="container">
-                <a href="#" class="logo">
-                    <img src="logo_inout.svg" alt="IN & OUT by Elfartas" class="logo-img">
+                <a href="#" class="logo" aria-label="Retour à l'accueil">
+                    <img src="logo_inout.svg" alt="IN & OUT by Elfartas - Logo" class="logo-img">
                 </a>
-                <div class="nav-links">
+                <div class="nav-links" id="mainNav">
                     <a href="#about">Qui sommes-nous</a>
                     <a href="#services">Services</a>
                     <a href="#contact" class="cta-btn">Contact</a>
                 </div>
-                <button class="mobile-menu-toggle" aria-label="Menu">
+                <button class="mobile-menu-toggle"
+                        aria-label="Ouvrir le menu"
+                        aria-expanded="false"
+                        aria-controls="mainNav">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -33,6 +73,7 @@
     </header>
 
     <!-- Hero Section -->
+    <main id="main-content">
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
@@ -205,32 +246,53 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" aria-label="Formulaire de contact">
                         <div class="form-group">
-                            <label for="name">Nom complet</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="name">Nom complet <span class="required" aria-label="obligatoire">*</span></label>
+                            <input type="text"
+                                   id="name"
+                                   name="name"
+                                   required
+                                   aria-required="true"
+                                   placeholder="Jean Dupont">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email <span class="required" aria-label="obligatoire">*</span></label>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   required
+                                   aria-required="true"
+                                   placeholder="jean.dupont@exemple.fr">
                         </div>
                         <div class="form-group">
                             <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone">
+                            <input type="tel"
+                                   id="phone"
+                                   name="phone"
+                                   placeholder="+33 6 12 34 56 78">
                         </div>
                         <div class="form-group">
-                            <label for="message">Décrivez votre projet</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Décrivez votre projet <span class="required" aria-label="obligatoire">*</span></label>
+                            <textarea id="message"
+                                      name="message"
+                                      rows="5"
+                                      required
+                                      aria-required="true"
+                                      placeholder="Décrivez brièvement votre projet de construction ou rénovation..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                        <button type="submit" class="btn btn-primary" aria-label="Envoyer le formulaire de contact">
+                            Envoyer le message
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">

@@ -1,11 +1,34 @@
+// ==================== PAGE LOADER ====================
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    const body = document.body;
+
+    body.classList.add('loading');
+
+    setTimeout(() => {
+        loader.classList.add('hidden');
+        body.classList.remove('loading');
+
+        // Remove loader from DOM after animation
+        setTimeout(() => {
+            if (loader && loader.parentNode) {
+                loader.parentNode.removeChild(loader);
+            }
+        }, 500);
+    }, 800);
+});
+
 // ==================== MOBILE MENU TOGGLE ====================
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener('click', () => {
+        const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
         navLinks.classList.toggle('active');
         mobileMenuToggle.classList.toggle('active');
+        mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+        mobileMenuToggle.setAttribute('aria-label', isExpanded ? 'Ouvrir le menu' : 'Fermer le menu');
     });
 
     // Close mobile menu when clicking on a link
@@ -13,6 +36,8 @@ if (mobileMenuToggle) {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuToggle.setAttribute('aria-label', 'Ouvrir le menu');
         });
     });
 }
@@ -84,28 +109,64 @@ document.querySelectorAll('.service-card, .contact-item, .features-list li').for
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Get form data
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
-        // Here you would typically send the data to your backend
-        // For now, we'll just show a success message
+        // Validate form
+        if (!data.name || !data.email || !data.message) {
+            showNotification('Veuillez remplir tous les champs obligatoires.', 'error');
+            return;
+        }
 
-        // Create mailto link as fallback
-        const mailtoLink = `mailto:contact@inout.build?subject=Nouveau message de ${data.name}&body=Nom: ${data.name}%0D%0AEmail: ${data.email}%0D%0ATéléphone: ${data.phone}%0D%0A%0D%0AMessage:%0D%0A${data.message}`;
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            showNotification('Veuillez entrer une adresse email valide.', 'error');
+            return;
+        }
 
-        // Show success message
-        showNotification('Merci pour votre message! Nous vous contacterons bientôt.', 'success');
+        // Disable submit button
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Envoi en cours...';
 
-        // Reset form
-        contactForm.reset();
+        // Create mailto link
+        const mailtoLink = `mailto:contact@inout.build?subject=Nouveau message de ${encodeURIComponent(data.name)}&body=Nom: ${encodeURIComponent(data.name)}%0D%0AEmail: ${encodeURIComponent(data.email)}%0D%0ATéléphone: ${encodeURIComponent(data.phone || 'Non fourni')}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(data.message)}`;
 
-        // Optional: Open email client
-        // window.location.href = mailtoLink;
+        // Simulate sending delay
+        setTimeout(() => {
+            // Show success message
+            showNotification('Merci pour votre message! Nous vous contacterons bientôt.', 'success');
+
+            // Reset form
+            contactForm.reset();
+
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+
+            // Open email client
+            window.location.href = mailtoLink;
+        }, 1000);
     });
+
+    // Real-time validation
+    const emailInput = contactForm.querySelector('#email');
+    if (emailInput) {
+        emailInput.addEventListener('blur', () => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailInput.value && !emailRegex.test(emailInput.value)) {
+                emailInput.style.borderColor = '#e74c3c';
+            } else {
+                emailInput.style.borderColor = '';
+            }
+        });
+    }
 }
 
 // ==================== NOTIFICATION SYSTEM ====================
