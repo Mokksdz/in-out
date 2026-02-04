@@ -1,0 +1,8 @@
+# robots.txt for IN & OUT by Elfartas
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://inout.build/sitemap.xml

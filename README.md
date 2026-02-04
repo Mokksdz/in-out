@@ -54,24 +54,56 @@ vercel --prod
 ```
 In&Out site/
 │
-├── index.html          # Page principale
-├── styles.css          # Styles CSS
-├── script.js           # Scripts JavaScript
-├── vercel.json         # Configuration Vercel
-├── package.json        # Configuration npm
-└── README.md           # Ce fichier
+├── index.html                  # Page principale
+├── styles.css                  # Styles CSS
+├── script.js                   # Scripts JavaScript
+├── logo_inout.svg              # Logo principal
+├── logo_inout_fond_vert.svg    # Logo pour footer
+├── vercel.json                 # Configuration Vercel
+├── package.json                # Configuration npm
+├── robots.txt                  # Directives pour les robots
+├── sitemap.xml                 # Plan du site pour SEO
+├── .htaccess                   # Configuration Apache (optionnel)
+└── README.md                   # Ce fichier
 ```
 
 ## ✨ Fonctionnalités
 
+### Design & UX
 - ✅ Design moderne et professionnel
 - ✅ 100% responsive (mobile, tablette, desktop)
-- ✅ Animations fluides
-- ✅ Formulaire de contact
+- ✅ Animations fluides et interactives
+- ✅ Loading screen avec animation
 - ✅ Navigation smooth scroll
-- ✅ SEO optimisé
-- ✅ Performance optimisée
-- ✅ Accessibilité (WCAG)
+- ✅ Menu mobile avec hamburger
+
+### Formulaire de contact
+- ✅ Validation en temps réel
+- ✅ Integration mailto
+- ✅ États de chargement
+- ✅ Messages de notification
+- ✅ Champs obligatoires marqués
+
+### SEO
+- ✅ Meta tags complets (Open Graph, Twitter Cards)
+- ✅ Sitemap.xml
+- ✅ Robots.txt
+- ✅ Favicon optimisé
+- ✅ URLs et structure sémantique
+
+### Accessibilité (WCAG 2.1)
+- ✅ Navigation au clavier
+- ✅ Skip to content link
+- ✅ ARIA labels et roles
+- ✅ Focus styles visibles
+- ✅ Structure HTML5 sémantique
+- ✅ Contraste des couleurs optimisé
+
+### Performance
+- ✅ CSS et JS optimisés
+- ✅ Images SVG légères
+- ✅ Cache navigateur
+- ✅ Compression gzip
 
 ## 🎨 Personnalisation
 
